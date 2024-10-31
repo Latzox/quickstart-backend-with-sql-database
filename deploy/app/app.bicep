@@ -10,6 +10,12 @@ param aspSkuName string
 @description('The Docker image to deploy to the api')
 param dockerImage string
 
+@description('The name of the SQL Server to use')
+param sqlServerName string
+
+@description('The name of the SQL Database to connect to')
+param sqlDatabaseName string
+
 @description('The tags to apply to the resources')
 param tags object = {
   workload: 'Sample Backend with SQL Database'
@@ -59,6 +65,14 @@ resource webApp 'Microsoft.Web/sites@2023-12-01' =  {
       acrUserManagedIdentityID: managedIdentity.properties.clientId
       linuxFxVersion: 'DOCKER|${dockerImage}'
       appSettings: [
+        {
+          name: 'SQL_SERVER'
+          value: sqlServerName
+        }
+        {
+          name: 'SQL_DATABASE'
+          value: sqlDatabaseName
+        }
       ]
     }
     httpsOnly: true

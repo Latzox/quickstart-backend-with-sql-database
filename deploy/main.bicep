@@ -113,6 +113,8 @@ module app 'app/app.bicep' = {
     applicationName: applicationName
     aspSkuName: aspSkuName
     dockerImage: dockerImage
+    sqlServerName: serverName
+    sqlDatabaseName: sqlDBName
   }
   dependsOn: [
     appRg
