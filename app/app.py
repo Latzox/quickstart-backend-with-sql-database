@@ -22,7 +22,7 @@ def get_employees():
     rows = cursor.fetchall()
     conn.close()
 
-    # Convert data to a list of dictionaries
+    # Convert data to a list of dictionaries.
     employees = []
     for row in rows:
         employees.append({
