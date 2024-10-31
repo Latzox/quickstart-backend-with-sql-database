@@ -8,3 +8,9 @@ CREATE TABLE Employees (
 INSERT INTO Employees (ID, Name, Position, Salary) VALUES (1, 'Alice', 'Software Engineer', 90000.00);
 INSERT INTO Employees (ID, Name, Position, Salary) VALUES (2, 'Bob', 'Data Analyst', 75000.00);
 INSERT INTO Employees (ID, Name, Position, Salary) VALUES (3, 'Charlie', 'Product Manager', 105000.00);
+
+CREATE USER [<identity-name>] FROM EXTERNAL PROVIDER;
+ALTER ROLE db_datareader ADD MEMBER [<identity-name>];
+ALTER ROLE db_datawriter ADD MEMBER [<identity-name>];
+ALTER ROLE db_ddladmin ADD MEMBER [<identity-name>];
+GO
