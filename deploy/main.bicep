@@ -43,7 +43,7 @@ param sqlDBSkuTier string = 'GeneralPurpose'
 param capacity int = 1
 
 @description('The subscription ID for the Azure Container Registry')
-param subIdAcr string
+param subIdAcr string = '00000000-0000-0000-0000-000000000000'
 
 @description('The name of the resource group for the Azure Container Registry')
 param acrRgName string = 'rg-acr-prod-001'
