@@ -1,3 +1,4 @@
 msal==1.31.0
 pyodbc==5.2.0
 flask==3.0.3
+gunicorn==23.0.0
