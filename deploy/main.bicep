@@ -22,10 +22,10 @@ param sqlDBName string = 'SampleDB'
 param tenantId string = subscription().tenantId
 
 @description('The name of the sql server admin.')
-param sqlAdminName string
+param sqlAdminName string = 'latzox'
 
 @description('The entra object id of the sql server admin.')
-param sqlAdminObjectId string
+param sqlAdminObjectId string = 'c104f006-8937-4583-8efc-2eb71b8bceb6'
 
 @description('The user type of the sql server admin.')
 param principalType string = 'User'
@@ -46,16 +46,16 @@ param capacity int = 1
 param subIdAcr string
 
 @description('The name of the resource group for the Azure Container Registry')
-param acrRgName string
+param acrRgName string = 'rg-acr-prod-001'
 
 @description('The base name of the web application')
-param applicationName string
+param applicationName string = 'samplesql-prod'
 
 @description('The SKU for the App Service Plan.')
-param aspSkuName string
+param aspSkuName string = 'B1'
 
 @description('The Docker image to deploy to the api')
-param dockerImage string
+param dockerImage string = 'latzox.azurecr.io/sample-backend-with-sql-database:latest'
 
 @description('Role definition ID for ACR pull role.')
 param roleDefinitionId string = subscriptionResourceId(
