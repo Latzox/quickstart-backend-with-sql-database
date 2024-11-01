@@ -34,8 +34,15 @@ param capacity int
 resource sqlServer 'Microsoft.Sql/servers@2023-08-01-preview' = {
   name: serverName
   location: location
+  tags: {
+    workload: 'Sample Backend with SQL Database'
+    topic: 'SQL Server'
+    environment: 'Production'
+  }
   properties: {
+    minimalTlsVersion: '1.2'
     administrators: {
+      administratorType: 'ActiveDirectory'
       login: sqlAdminName
       sid: sqlAdminObjectId
       tenantId: tenantId
