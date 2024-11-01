@@ -23,14 +23,6 @@ param tags object = {
   environment: 'Production'
 }
 
-@description('User-assigned managed identity for the azure app service.')
-resource managedIdentity 'Microsoft.ManagedIdentity/userAssignedIdentities@2023-07-31-preview' = {
-  name: '${applicationName}-identity'
-  location: resourceGroup().location
-  tags: tags
-}
-
-
 @description('Deploy an app service plan for each region specified')
 resource appServicePlans 'Microsoft.Web/serverfarms@2023-12-01' =  {
   name: 'asp-${applicationName}'
@@ -52,17 +44,12 @@ resource webApp 'Microsoft.Web/sites@2023-12-01' =  {
   kind: 'app,linux,container'
   tags: tags
   identity: {
-    type: 'UserAssigned'
-    userAssignedIdentities: {
-      '${managedIdentity.id}': {}
-    }
+    type: 'SystemAssigned'
   }
   properties: {
     siteConfig: {
       minTlsVersion: '1.2'
       http20Enabled: true
-      acrUseManagedIdentityCreds: true
-      acrUserManagedIdentityID: managedIdentity.properties.clientId
       linuxFxVersion: 'DOCKER|${dockerImage}'
       appSettings: [
         {
@@ -81,4 +68,13 @@ resource webApp 'Microsoft.Web/sites@2023-12-01' =  {
   }
 }
 
-output managedIdentityPrincipalId string = managedIdentity.properties.principalId
+resource webAppConfig 'Microsoft.Web/sites/config@2023-12-01' = {
+  parent: webApp
+  name: 'web'
+  properties: {
+    acrUseManagedIdentityCreds: true
+    acrUserManagedIdentityID: webApp.identity.principalId
+  }
+}
+
+output managedIdentityPrincipalId string = webApp.identity.principalId
