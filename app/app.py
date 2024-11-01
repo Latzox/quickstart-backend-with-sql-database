@@ -11,7 +11,7 @@ database = os.getenv('SQL_DATABASE')
 
 def get_db_connection():
     # Use Managed Identity to get a token for Azure SQL
-    connection_string = f'DRIVER={{ODBC Driver 17 for SQL Server}};SERVER={server}.database.windows.net,1433;DATABASE={database};Authentication=ActiveDirectoryMsi'
+    connection_string = f'DRIVER={{ODBC Driver 17 for SQL Server}};SERVER={server}.database.windows.net;PORT=1433;DATABASE={database};Authentication=ActiveDirectoryMsi'
     return pyodbc.connect(connection_string)
 
 @app.route('/employees', methods=['GET'])
