@@ -7,6 +7,9 @@ rule:
     - Azure.AppService.MinPlan
     - Azure.AppService.AvailabilityZone
     - Azure.AppService.PlanInstanceCount
+    - Azure.SQL.DefenderCloud
+    - Azure.SQL.Auditing
+    - Azure.SQL.MaintenanceWindow
 
 configuration:
   AZURE_BICEP_FILE_EXPANSION: true
