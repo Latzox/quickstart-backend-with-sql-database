@@ -1,16 +1,20 @@
 {
-  "image": "mcr.microsoft.com/devcontainers/universal:2",
-  "features": {
-    "ghcr.io/devcontainers/features/powershell:1": {
-      "version": "latest"
-    },
-    "ghcr.io/devcontainers/features/azure-cli:1": {
-      "installBicep": true,
-      "installUsingPython": true,
-      "version": "latest"
-    },
-    "ghcr.io/jlaundry/devcontainer-features/azure-functions-core-tools:1": {
-      "version": "latest"
+  "name": "Legendary Goggles",
+  "build": {
+    "dockerfile": "./Dockerfile",
+    "context": "."
+  },
+  "customizations": {
+    "vscode": {
+      "extensions": [
+        "ms-vscode.azurecli",
+        "ms-vscode.vscode-node-azure-pack",
+        "ms-vscode.powershell",
+        "ms-azuretools.vscode-docker",
+        "ms-azuretools.vscode-bicep",
+        "ms-python.python"
+      ]
     }
-  }
+  },
+  "postCreateCommand": ""
 }
