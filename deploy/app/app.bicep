@@ -48,7 +48,7 @@ resource webApp 'Microsoft.Web/sites@2023-12-01' =  {
   }
   properties: {
     siteConfig: {
-      minTlsVersion: '1.2'
+      minTlsVersion: '1.3'
       http20Enabled: true
       linuxFxVersion: 'DOCKER|${dockerImage}'
       appSettings: [
